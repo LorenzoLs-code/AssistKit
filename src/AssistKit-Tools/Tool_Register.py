@@ -9,7 +9,8 @@ class _ToolArg:
 
 
 class _Tool:
-  def __init__(self, name:str, level:int, doc:str, args:list[_ToolArg]| None=[]):
+  def __init__(self, func:Function, name:str, level:int, doc:str, args:list[_ToolArg]| None=[]):
+    self.func   = func
     self.name   = name
     self.level  = level
     self.doc    = doc
@@ -24,6 +25,7 @@ class Registry:
       def decorator(func):
 
         self._tools.append(_Tool(
+            func  = func,
             name  = func.__name__,
             level = level,
             doc   = func.__doc__,
