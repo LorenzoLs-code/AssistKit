@@ -1,4 +1,5 @@
 from typing import Any
+import inspect
 
 class _ToolArg:
   def __init__(self, name:str, type:Any, required=True, default=None):
@@ -23,7 +24,25 @@ class Registry:
 
     def register(self, level:int):
       def decorator(func):
-
+        signatur = inspect.signature(func_var)
+        args:list[_ToolArg] = []
+        for name, param in signatur.parameters.items():
+          
+            required = False
+            default  = None
+            if param.default is inspect.Parameter.empty:
+                required=True
+            else:
+                default = param.default
+          
+            args.append(_ToolArg(
+                name     = name, 
+                type     = param.annotation,  
+                required = required, 
+                default  = default
+            ))
+          
+        
         self._tools.append(_Tool(
             func  = func,
             name  = func.__name__,
