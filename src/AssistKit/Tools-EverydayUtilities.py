@@ -62,3 +62,31 @@ def currency_converter(base:str, quotes:str, amount:float = 1.0):
 
     data = response.json()
     return round(amount * data["rate"], 2)
+
+
+# =======================
+#       Time & Date
+# =======================
+from datetime import datetime, timedelta
+
+@EverydayUtilities_Registry.register(level=0)
+def get_time(add:bool = True, add_days:int=0, add_minutes:int=0, add_hours:int=0, add_weeks:int=0):
+    """Get current date/time (leave args at 0) or calculate a past/future date/time.
+
+    Args:
+        add: True to add time (future), False to subtract time (past).
+        add_days: Days to add or subtract.
+        add_minutes: Minutes to add or subtract.
+        add_hours: Hours to add or subtract.
+        add_weeks: Weeks to add or subtract.
+    """
+    
+    time_now = datetime.now()
+    time_add = timedelta(days=add_days, minutes=add_minutes, hours=add_hours, weeks=add_weeks)
+
+    if add:
+        time_result = time_now + time_add
+    else:
+        time_result = time_now - time_add
+
+    return time_result.strftime("%d.%m.%Y-Date | %H:%M-Time")
