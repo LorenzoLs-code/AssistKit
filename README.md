@@ -13,4 +13,5 @@ The tools are categorized.
 - [ ] Time & Time calculator
 - [ ] Date & Date calculator
 - [x] Basic Calculator 
-- [ ] Currency converter
+- [x] Currency converter
+

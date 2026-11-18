@@ -1,4 +1,4 @@
-from .Tool_Register import Registry
+from Tool_Register import Registry
 EverydayUtilities_Registry = Registry()
 
 # TOOLS
@@ -19,7 +19,7 @@ OPS = {
 }
 
 @EverydayUtilities_Registry.register(level=0)
-def calculate(expression: str) -> str:
+def calculator(expression: str) -> str:
     """Evaluates a math expression. Always use this tool for calculations.
 
     Args:
@@ -40,3 +40,26 @@ def calculate(expression: str) -> str:
         return str(_eval(tree.body))
     except Exception as e:
         return f"Error in calculation: {e}"
+
+
+# ====================
+#  Currency converter
+# ====================
+import requests
+
+@EverydayUtilities_Registry.register(level=0)
+def currency_converter(base:str, quotes:str, amount:float):
+    """Convert an amount between two currencies using live exchange rates.
+
+    Args:
+        base: Source currency ISO 4217 code (e.g., "EUR").
+        quotes: Target currency ISO 4217 code (e.g., "USD").
+        amount: Amount to convert (default 1.0 for exchange rate).
+    """
+
+    response = requests.get(f"https://api.frankfurter.dev/v2/rate/{base.upper()}/{quotes.upper()}")
+    response.raise_for_status()
+
+    data = response.json()
+    return round(amount * data["rate"], 2)
+print(currency_converter("CHF", "EUR", 150.0))
