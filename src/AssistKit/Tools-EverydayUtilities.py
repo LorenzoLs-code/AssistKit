@@ -62,4 +62,3 @@ def currency_converter(base:str, quotes:str, amount:float):
 
     data = response.json()
     return round(amount * data["rate"], 2)
-print(currency_converter("CHF", "EUR", 150.0))
