@@ -48,7 +48,7 @@ def calculator(expression: str) -> str:
 import requests
 
 @EverydayUtilities_Registry.register(level=0)
-def currency_converter(base:str, quotes:str, amount:float):
+def currency_converter(base:str, quotes:str, amount:float = 1.0):
     """Convert an amount between two currencies using live exchange rates.
 
     Args:
