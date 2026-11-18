@@ -10,8 +10,7 @@ The tools are categorized.
 ## development 
 
 **EverydayUtilities Checklist**
-- [ ] Time & Time calculator
-- [ ] Date & Date calculator
+- [x] get Time/Date & Time/Date calculator
 - [x] Basic Calculator 
 - [x] Currency converter
 
