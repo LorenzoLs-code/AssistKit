@@ -1,6 +1,7 @@
 class Registry:
     def __init__(self):
         self._tools: list[function] = []
+        self._attributes = {}
 
     def register(self, level:int):
         def decorator(func):
@@ -11,6 +12,16 @@ class Registry:
           
             return func
         return decorator
+
+    def setAttributes(self **attributes):
+        self._attributes.update(attributes)
+
+    def getAttributes(self, name:str):
+        try:
+            return self._attributes[name]
+        except KeyError:
+            # placeholder for custom error
+            raise KeyError("AttributeError: attribute not found")
 
     def parseOllama(self):
         return self._tools
