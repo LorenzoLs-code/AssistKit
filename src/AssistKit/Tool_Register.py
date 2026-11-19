@@ -22,5 +22,28 @@ class Registry:
         except KeyError:
             raise AttributeError(name=name, obj=self)
 
+    
     def parseOllama(self):
         return list(self._tools.values())
+
+    def callOllama(self, response):
+        if not response.message.tool_calls: return response
+
+        for call in response.message.tool_calls:
+            func = self._tools.get(call.function.name)
+            if not func: 
+                messages.append({
+                    "role": "tool",
+                    "content": f"Error: Tool '{call.function.name}' not found.",
+                    "tool_name": call.function.name,
+                })
+                continue
+            
+            result = func(**call.function.arguments)
+            response.messages.append({
+                "role": "tool",
+                "content": str(result),
+                "tool_name": call.function.name,
+            })
+
+        return response
