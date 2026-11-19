@@ -9,6 +9,11 @@ The tools are categorized.
 
 ## development 
 
+**Functions**
+- [x] Ollama Parser
+- [ ] Ollama CallHandler
+
+
 **EverydayUtilities Checklist**
 - [x] get Time/Date & Time/Date calculator
 - [x] Basic Calculator 
