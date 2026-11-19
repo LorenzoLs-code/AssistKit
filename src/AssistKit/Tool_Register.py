@@ -1,6 +1,6 @@
 class Registry:
     def __init__(self):
-        self._tools: dict[str ,function] = []
+        self._tools: dict[str, function] = []
         self._attributes = {}
 
     def register(self, level:int):
