@@ -11,7 +11,7 @@ The tools are categorized.
 
 **Functions**
 - [x] Ollama Parser
-- [ ] Ollama CallHandler
+- [x] Ollama CallHandler
 
 
 **EverydayUtilities Checklist**
