@@ -21,7 +21,7 @@ class Registry:
             return self._attributes[name]
         except KeyError:
             # placeholder for custom error
-            raise KeyError("AttributeError: attribute not found")
+            raise AttributeError(name=name, obj=self)
 
     def parseOllama(self):
         return self._tools
