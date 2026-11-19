@@ -23,12 +23,10 @@ class Registry:
             raise AttributeError(name=name, obj=self)
 
     
-    def parseOllama(self):
+    def ollamaParse(self):
         return list(self._tools.values())
 
-    def callOllama(self, response):
-        if not response.message.tool_calls: return response
-
+    def ollamaCall(self, messages, response):
         for call in response.message.tool_calls:
             func = self._tools.get(call.function.name)
             if not func: 
@@ -38,12 +36,16 @@ class Registry:
                     "tool_name": call.function.name,
                 })
                 continue
-            
-            result = func(**call.function.arguments)
-            response.messages.append({
+
+            try:
+                result = func(**call.function.arguments)
+            except Exception as exc:
+                result = f"Error executing tool '{call.function.name}': {exc}"
+
+            messages.append({
                 "role": "tool",
                 "content": str(result),
                 "tool_name": call.function.name,
             })
 
-        return response
+        return messages
