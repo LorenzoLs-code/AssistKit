@@ -23,8 +23,4 @@ class Registry:
             raise AttributeError(name=name, obj=self)
 
     def parseOllama(self):
-        tools = []
-        for name, func in self._tools.items():
-            tools.append(func)
-
-        return tools 
+        return list(self._tools.values())
