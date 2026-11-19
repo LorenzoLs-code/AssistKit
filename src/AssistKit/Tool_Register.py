@@ -1,6 +1,6 @@
 class Registry:
     def __init__(self):
-        self._tools: list[function] = []
+        self._tools: dict[str ,function] = []
         self._attributes = {}
 
     def register(self, level:int):
@@ -8,7 +8,7 @@ class Registry:
             
             func.__doc__ = f"level = {level} | {func.__doc__}"
           
-            self._tools.append(func)
+            self._tools[func.__name__] = func
           
             return func
         return decorator
@@ -24,4 +24,8 @@ class Registry:
             raise AttributeError(name=name, obj=self)
 
     def parseOllama(self):
-        return self._tools
+        tools = []
+        for name, func in self._tools.items:
+            tools.append(func)
+
+        return tools 
