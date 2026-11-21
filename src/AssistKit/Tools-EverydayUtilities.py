@@ -9,7 +9,7 @@ EverydayUtilities_Registry = Registry()
 import ast
 import operator
 
-OPS = {
+_OPS = {
     ast.Add: operator.add,
     ast.Sub: operator.sub,
     ast.Mult: operator.mul,
@@ -30,9 +30,9 @@ def calculator(expression: str) -> str:
         if isinstance(node, ast.Constant):
             return node.value
         elif isinstance(node, ast.BinOp):
-            return OPS[type(node.op)](_eval(node.left), _eval(node.right))
+            return _OPS[type(node.op)](_eval(node.left), _eval(node.right))
         elif isinstance(node, ast.UnaryOp):
-            return OPS[type(node.op)](_eval(node.operand))
+            return _OPS[type(node.op)](_eval(node.operand))
         raise ValueError("Unsupported operation")
 
     try:
