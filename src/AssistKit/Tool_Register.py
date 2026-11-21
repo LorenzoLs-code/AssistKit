@@ -1,7 +1,11 @@
 class Registry:
-    def __init__(self):
-        self._tools: dict[str, function] = []
+    def __init__(self, registrys:list[Registry] = []):
+        self._tools: dict[str, function] = {}
         self._attributes = {}
+
+        for registry in registrys:
+            self._tools     .update(registry._tools)
+            self._attributes.update(registry._attributes)
 
     def register(self, level:int):
         def decorator(func):
