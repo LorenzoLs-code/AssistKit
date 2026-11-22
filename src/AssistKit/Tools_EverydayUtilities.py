@@ -70,10 +70,11 @@ def currency_converter(base:str, quotes:str, amount:float = 1.0):
 from datetime import datetime, timedelta
 
 @EverydayUtilities_Registry.register(level=0)
-def get_time(add:bool = True, add_days:int=0, add_minutes:int=0, add_hours:int=0, add_weeks:int=0):
+def get_time(base_time = None, add:bool = True, add_days:int=0, add_minutes:int=0, add_hours:int=0, add_weeks:int=0):
     """Get current date/time (leave args at 0) or calculate a past/future date/time.
 
     Args:
+        base_time: Optional starting date/time in ISO format (e.g. '2026-11-22T15:30:00' or '2026-11-22'). Defaults to None (current time).
         add: True to add time (future), False to subtract time (past).
         add_days: Days to add or subtract.
         add_minutes: Minutes to add or subtract.
@@ -81,7 +82,10 @@ def get_time(add:bool = True, add_days:int=0, add_minutes:int=0, add_hours:int=0
         add_weeks: Weeks to add or subtract.
     """
     
-    time_now = datetime.now()
+    if base_time:
+        time_now = datetime.fromisoformat(base_time)
+    else:
+        time_now = datetime.now()
     time_add = timedelta(days=add_days, minutes=add_minutes, hours=add_hours, weeks=add_weeks)
 
     if add:
