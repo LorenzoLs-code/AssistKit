@@ -18,6 +18,7 @@ The tools are categorized.
 - [ ] How to use
 
 **Functions**
+- [ ] system-promt extension
 - [x] Ollama Parser
 - [x] Ollama CallHandler
 
