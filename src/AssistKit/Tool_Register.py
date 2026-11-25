@@ -3,10 +3,18 @@ class Registry:
         self._tools: dict[str, function] = {}
         self._attributes = {}
 
+        self.SystemPromt_extensions:list[str] = []
+
         for registry in registrys:
             self._tools     .update(registry._tools)
             self._attributes.update(registry._attributes)
 
+            self.SystemPromt_extensions.extend(registry.SystemPromt_extensions[1:])
+
+    def addSystemPromtExtension(self, extension:str):
+        self.SystemPromt_extensions.append(extension)
+
+    
     def register(self, level:int):
         def decorator(func):
             
@@ -17,6 +25,7 @@ class Registry:
             return func
         return decorator
 
+    
     def setAttributes(self **attributes):
         self._attributes.update(attributes)
 
@@ -42,7 +51,7 @@ class Registry:
                 continue
 
             try:
-                result = func(**call.function.arguments)
+                result = func(registry=self, **call.function.arguments)
             except Exception as exc:
                 result = f"Error executing tool '{call.function.name}': {exc}"
 
