@@ -17,6 +17,7 @@ The tools are categorized.
 
 **Documentation**
 - [ ] How to use
+- [ ] How to install
 
 **Functions**
 - [ ] system-promt extension
