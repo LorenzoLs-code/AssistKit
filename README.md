@@ -6,6 +6,7 @@ This collection is **partly** aimed specifically for assistants/agents/LLMs who 
 The tools are categorized.
 | category | code | description |
 |----------|------|-------------|
+| SelfImprovement   | Planned | Tools for reading/writing personal notes for itself |
 | EverydayUtilities | [code](https://github.com/LorenzoLs-code/AssistKit/blob/main/src/AssistKit/Tools_EverydayUtilities.py) | These tools make an assistant in everyday life more pleasant |
 | FileUtilities     | Planned | Tools for reading/processing files |
 | DevUtilities      | [code](https://github.com/LorenzoLs-code/AssistKit/blob/main/src/AssistKit/Tools_DevUtilities.py) | These tools make an assistant for developers more helpful |
@@ -23,6 +24,12 @@ The tools are categorized.
 - [x] Ollama CallHandler
 
 ## Tools
+
+**SelfImprovement**
+- [ ] write note
+- [ ] delete note
+- [ ] get all-around notes
+- [ ] get categorized notes
 
 **EverydayUtilities Checklist**
 - [x] get Time/Date & Time/Date calculator
