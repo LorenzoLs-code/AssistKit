@@ -19,7 +19,7 @@ _OPS = {
 }
 
 @EverydayUtilities_Registry.register(level=0)
-def calculator(expression: str) -> str:
+def calculator(expression: str, **kwargs) -> str:
     """Evaluates a math expression. Always use this tool for calculations.
 
     Args:
@@ -48,7 +48,7 @@ def calculator(expression: str) -> str:
 import requests
 
 @EverydayUtilities_Registry.register(level=0)
-def currency_converter(base:str, quotes:str, amount:float = 1.0):
+def currency_converter(base:str, quotes:str, amount:float = 1.0, **kwargs):
     """Convert an amount between two currencies using live exchange rates.
 
     Args:
@@ -70,7 +70,7 @@ def currency_converter(base:str, quotes:str, amount:float = 1.0):
 from datetime import datetime, timedelta
 
 @EverydayUtilities_Registry.register(level=0)
-def get_time(base_time = None, add:bool = True, add_days:int=0, add_minutes:int=0, add_hours:int=0, add_weeks:int=0):
+def get_time(base_time = None, add:bool = True, add_days:int=0, add_minutes:int=0, add_hours:int=0, add_weeks:int=0, **kwargs):
     """Get current date/time (leave args at 0) or calculate a past/future date/time.
 
     Args:
