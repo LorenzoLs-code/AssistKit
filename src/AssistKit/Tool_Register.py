@@ -3,16 +3,16 @@ class Registry:
         self._tools: dict[str, function] = {}
         self._attributes = {}
 
-        self.SystemPromt_extensions:list[str] = []
+        self._SystemPromt_extensions:list[str] = []
 
         for registry in registrys:
             self._tools     .update(registry._tools)
             self._attributes.update(registry._attributes)
 
-            self.SystemPromt_extensions.extend(registry.SystemPromt_extensions[1:])
+            self._SystemPromt_extensions.extend(registry.SystemPromt_extensions[1:])
 
     def addSystemPromtExtension(self, extension:str):
-        self.SystemPromt_extensions.append(extension)
+        self._SystemPromt_extensions.append(extension)
 
     
     def register(self, level:int):
@@ -35,8 +35,11 @@ class Registry:
         except KeyError:
             raise AttributeError(name=name, obj=self)
 
+    # ===== User funcs =====
+    def getSystemPromtExtension(self) -> str:
+        return "\n".join(self._SystemPromt_extensions)
     
-    def ollamaParse(self):
+    def ollamaParse(self) -> list[function]:
         return list(self._tools.values())
 
     def ollamaCall(self, messages, response):
