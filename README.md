@@ -20,7 +20,7 @@ The tools are categorized.
 - [ ] How to install
 
 **Functions**
-- [ ] system-promt extension
+- [x] system-promt extension
 - [x] Ollama Parser
 - [x] Ollama CallHandler
 
